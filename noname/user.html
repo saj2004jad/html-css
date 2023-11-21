@@ -41,7 +41,12 @@
       </div>
     </li>
     <li><a class="subheader">social</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
     <li><a href="https://t.me/saj2004jad_saleh"><i class="material-icons">insert_link</i>telegram</a></li>
+    <li><a href="https://github.com/saj2004jad"><i class="material-icons">insert_link</i>Github</a></li>
+    <li><a href="https://sajjad.saleh2004@gmail.com"><i class="material-icons">insert_link</i>Email</a></li>
     <!-- for page -->
     <!-- <li><div class="divider"></div></li>
           <li><a class="subheader">pages</a></li>
@@ -53,7 +58,7 @@
 
 
   <!-- add butten________start -->
-  <section id="top-action-section" class="row">
+  <section id="top-action-section" class="row m-b-0 container">
     <div class="p-t-30 col s12 m6 l6 ">
       <button class="waves-effect waves-light btn grey darken-1 p-all-30 w-full rounded_pill flex-c black-text">
         <i class="material-icons m-r-5">add</i>
@@ -61,7 +66,7 @@
       </button>
     </div>
     <!-- search________start -->
-    <div class="row col s12 m6 l6">
+    <div class="row col s12 m6 l6 m-b-5">
       <div class="input-field col s12">
         <input id="search" type="text" class="validate">
         <label for="search">
@@ -70,25 +75,77 @@
       </div>
   </section>
   <section class="user-list-section">
-    <ul class="collapsible">
-      <li>
+    <ul class="collapsible hide-on-med-and-up">
+      <li class="users-list-item">
         <div class="collapsible-header">
-          <i class="material-icons">arrow_drop_down_circle</i>
+          <i class="material-icons gray-text darken-1 user-list-arrow-icon trans-0-5">arrow_drop_down_circle</i>
           sajjad saleh
         </div>
         <div class="collapsible-body">
-          <div class="p-all-5" >
-            <span class="f-bold">username : </span>
+          <div class="p-all-5">
+            <span class="f-bold">Username : </span>
             <span>sajjad saleh</span>
           </div>
           <div class="p-all-5">
-            <span class="f-bold">age : </span>
+            <span class="f-bold">Email : </span>
+            <span>sajjad.saleh2004@gmail.com</span>
+          </div>
+          <div class="p-all-5">
+            <span class="f-bold">Age : </span>
             <span>19</span>
+          </div>
+          <div class="p-all-5 flex-l-m">
+            <span class="f-bold">Action : </span>
+            <i class="material-icons red-text m-l-5 m-r-5">delete_forever</i>
+            <i class="material-icons green-text m-l-5 m-r-5">edit</i>
           </div>
         </div>
       </li>
     </ul>
 
+    <div class="hide-on-med-and-down show-on-medium-and-up container">
+      <table class="centered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+
+        <tbody class="desktop_table_body">
+          <tr>
+            <td>sajjad saleh</td>
+            <td>19</td>
+            <td>sajjad.saleh2004@gamail.com</td>
+            <td>
+              <i class="material-icons green-text m-l-5 m-r-5 hov-pointer">edit</i>
+              <i class="material-icons red-text m-l-5 m-r-5 hov-pointer">delete_forever</i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div
+      class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 rounded_top_30">
+      <div class="pagination_item_counts flex-l p-l-10 flex-l-m">
+        showing
+        <span class="m-l-5 m-r-5 max-w-50">
+          <input type="number" class="grey-text no-border center-align m-b-0" value="10">
+        </span>
+        of
+        <span class="grey-text m-l-5 m-r-5 ">100</span>
+      </div>
+      <div class="pagination_buttens">
+        <i
+          class="material-icons grey m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill">keyboard_arrow_left</i>
+        <i
+          class="material-icons grey m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill">keyboard_arrow_right</i>
+      </div>
+    </div>
   </section>
   <script src="/assets/materialize/js/materialize.min.js"></script>
   <script src="/assets/js/app.js"></script>

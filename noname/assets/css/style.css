@@ -4,3 +4,14 @@
  align-items:center !important;
     }
 }
+
+.users-list-item.active .user-list-arrow-icon{
+
+    transform: rotate(180deg);
+}
+.users-list-item.active , .users-list-item.active .collapsible-header{
+    background-color: gray;
+}
+.containerr{
+    width: 100% !important;
+}
