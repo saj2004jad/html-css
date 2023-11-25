@@ -58,9 +58,10 @@
 
 
   <!-- add butten________start -->
-  <section id="top-action-section" class="row m-b-0 container">
+  <section id="top-action-section" class="row m-b-0 p-t-20 container ">
     <div class="p-t-30 col s12 m6 l6 ">
-      <button class="waves-effect waves-light btn grey darken-1 p-all-30 w-full rounded_pill flex-c black-text">
+      <button id="add_user_button"
+        class="waves-effect waves-light btn grey darken-1  w-full rounded_pill p-all-10 flex-c black-text ">
         <i class="material-icons m-r-5">add</i>
         add user
       </button>
@@ -104,19 +105,21 @@
     </ul>
 
     <div class="hide-on-med-and-down show-on-medium-and-up container">
-      <table class="centered">
+      <table class="centered striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>Name</th>
-            <th>Age</th>
+            <th>Username</th>
             <th>Email</th>
+            <th>City</th>
             <th>Action</th>
           </tr>
         </thead>
 
 
         <tbody class="desktop_table_body">
-          <tr>
+          <!-- <tr>
             <td>sajjad saleh</td>
             <td>19</td>
             <td>sajjad.saleh2004@gamail.com</td>
@@ -124,7 +127,7 @@
               <i class="material-icons green-text m-l-5 m-r-5 hov-pointer">edit</i>
               <i class="material-icons red-text m-l-5 m-r-5 hov-pointer">delete_forever</i>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -147,6 +150,38 @@
       </div>
     </div>
   </section>
+
+  <section id="test_section"></section>
+
+  <div class="add_user_modal_back dis-none"></div>
+  <div class="add_user_modal containerr rounded_top_30 trans-0-5">
+    <div class="row p-t-10 p-b-10 p-r-40 p-l-40 center ">
+      <h5 class="center"><i class="material-icons m-r-10 m-l-10 pos-relative top-4">person_add</i>Add User</h5>
+
+
+
+      <form>
+        <div class="input-field coll s12  ">
+          <input type="text" id="name" class="validate">
+          <label for="name">Name:</label>
+
+          <div class="input-field coll s12 ">
+            <input type="text" id="username" class="validate ">
+            <label for="username">Username:</label>
+
+            <div class="input-field coll s12 ">
+              <input type="text" id="Email" class="validate">
+              <label for="Email">Email:</label>
+            </div>
+
+            <button type="button"
+              class=" waves-effect waves-light btn grey black-text m-b-20 w-full max-w-250 rounded_pill ">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="/assets/materialize/js/materialize.min.js"></script>
   <script src="/assets/js/app.js"></script>
   <script src="/assets/js/user.js"></script>
