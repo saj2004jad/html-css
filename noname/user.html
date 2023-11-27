@@ -14,12 +14,12 @@
 
 </style>
 
-<body>
+<body class="grey darken-3" x-data="usersData">
   <!-- navbar______start________ -->
-  <nav class=" grey darken-1 z-depth-1">
+  <nav class=" grey darken-4 z-depth-1">
     <div class="nav-wrapper">
-      <a href="#!" class="black-text">user manager</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
+      <a href="#!" class="white-text">user manager</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger white-text"><i class="material-icons white-text">menu</i></a>
       <ul class="hide-on-med-and-down">
         <!-- <li><a class="black-text"></a></li>
             <li><a class="black-text">Components</a></li> -->
@@ -29,24 +29,24 @@
     </div>
   </nav>
 
-  <ul class="sidenav" id="mobile-demo">
+  <ul class="sidenav grey darken-3" id="mobile-demo">
     <li>
       <div class="user-view">
         <div class="background">
           <img src="assets/images/gray.avif">
         </div>
         <a href="#user"><img class="circle" src="assets/images/avatar.jfif"></a>
-        <a href="#name"><span class="black-text name">sajjad saleh</span></a>
-        <a href="#email"><span class="black-text email">sajjad.saleh2004@gmail.com</span></a>
+        <a href="#name"><span class="white-text name">sajjad saleh</span></a>
+        <a href="#email"><span class="white-text email">sajjad.saleh2004@gmail.com</span></a>
       </div>
     </li>
-    <li><a class="subheader">social</a></li>
+    <li><a class="subheader white-text">social</a></li>
     <li>
       <div class="divider"></div>
     </li>
-    <li><a href="https://t.me/saj2004jad_saleh"><i class="material-icons">insert_link</i>telegram</a></li>
-    <li><a href="https://github.com/saj2004jad"><i class="material-icons">insert_link</i>Github</a></li>
-    <li><a href="https://sajjad.saleh2004@gmail.com"><i class="material-icons">insert_link</i>Email</a></li>
+    <li><a class="white-text" href="https://t.me/saj2004jad_saleh"><i class="material-icons grey-text lighten-2">insert_link</i>telegram</a></li>
+    <li><a class="white-text" href="https://github.com/saj2004jad"><i class="material-icons grey-text lighten-2">insert_link</i>Github</a></li>
+    <li><a class="white-text" href="https://sajjad.saleh2004@gmail.com"><i class="material-icons grey-text lighten-2">insert_link</i>Email</a></li>
     <!-- for page -->
     <!-- <li><div class="divider"></div></li>
           <li><a class="subheader">pages</a></li>
@@ -61,51 +61,55 @@
   <section id="top-action-section" class="row m-b-0 p-t-20 container ">
     <div class="p-t-30 col s12 m6 l6 ">
       <button id="add_user_button"
-        class="waves-effect waves-light btn grey darken-1  w-full rounded_pill p-all-10 flex-c black-text ">
-        <i class="material-icons m-r-5">add</i>
+        class="waves-effect waves-light btn   grey lighten-1  w-full rounded_pill p-all-10 flex-c black-text f-bold ">
+        <i class="material-icons m-r-5 f-bold">add</i>
         add user
       </button>
     </div>
     <!-- search________start -->
     <div class="row col s12 m6 l6 m-b-5">
       <div class="input-field col s12">
-        <input id="search" type="text" class="validate">
-        <label for="search">
-          <i class="material-icons pos-relative top-7">search</i>
+        <input id="search" type="text" class="validate white-text">
+        <label class="white-text" for="search">
+          <i class="material-icons pos-relative top-7 white-text">search</i>
           search</label>
       </div>
   </section>
-  <section class="user-list-section">
-    <ul class="collapsible hide-on-med-and-up">
-      <li class="users-list-item">
-        <div class="collapsible-header">
-          <i class="material-icons gray-text darken-1 user-list-arrow-icon trans-0-5">arrow_drop_down_circle</i>
-          sajjad saleh
+  <section class="user-list-section " x-init="getUsers()">
+    <ul class="collapsible popout hide-on-med-and-up ">
+      <template x-for="user in users">
+         <li class="users-list-item">
+        <div class="collapsible-header  grey lighten-1 ">
+          <i class="material-icons user-list-arrow-icon trans-0-5 grey-textdarken-4">arrow_drop_down_circle</i>
+         <span x-text="user.name" class="f-bold grey-textdarken-4"></span> 
         </div>
-        <div class="collapsible-body">
+        <div class="collapsible-body grey lighten-2">
           <div class="p-all-5">
-            <span class="f-bold">Username : </span>
-            <span>sajjad saleh</span>
+            <span class="f-bold ">Username : </span>
+            <span x-text="user.username"></span>
           </div>
-          <div class="p-all-5">
+          <div class="p-all-5"> 
             <span class="f-bold">Email : </span>
-            <span>sajjad.saleh2004@gmail.com</span>
+            <span  x-text="user.email" ></span>
+           
           </div>
-          <div class="p-all-5">
-            <span class="f-bold">Age : </span>
-            <span>19</span>
+          <div class="p-all-5"> <span class="f-bold">City : </span>
+            <span  x-text="user.address.city"> </span>
+           
           </div>
           <div class="p-all-5 flex-l-m">
-            <span class="f-bold">Action : </span>
+            <span   class="f-bold">Action : </span>
             <i class="material-icons red-text m-l-5 m-r-5">delete_forever</i>
             <i class="material-icons green-text m-l-5 m-r-5">edit</i>
           </div>
         </div>
       </li>
+    </template>
+     
     </ul>
 
     <div class="hide-on-med-and-down show-on-medium-and-up container">
-      <table class="centered striped">
+      <table class="centered striped  grey lighten-1">
         <thead>
           <tr>
             <th>#</th>
@@ -119,39 +123,47 @@
 
 
         <tbody class="desktop_table_body">
-          <!-- <tr>
-            <td>sajjad saleh</td>
-            <td>19</td>
-            <td>sajjad.saleh2004@gamail.com</td>
-            <td>
-              <i class="material-icons green-text m-l-5 m-r-5 hov-pointer">edit</i>
-              <i class="material-icons red-text m-l-5 m-r-5 hov-pointer">delete_forever</i>
-            </td>
-          </tr> -->
+          <template x-for="user in users">
+            <tr>
+              <td x-text="user.id"></td>
+              <td x-text="user.name"></td>
+              <td x-text="user.username"></td>
+              <td x-text="user.email"></td>
+              <td x-text="user.address.city"></td>
+              <td>
+                <i class="material-icons green-text m-l-5 m-r-5 hov-pointer">edit</i>
+                <i class="material-icons red-text m-l-5 m-r-5 hov-pointer">delete_forever</i>
+              </td>
+            </tr>
+          </template>
+
+
+
         </tbody>
       </table>
     </div>
-
+  </section>
+<section >
     <div
-      class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 rounded_top_30">
-      <div class="pagination_item_counts flex-l p-l-10 flex-l-m">
+      class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 rounded_top_30 grey darken-4">
+      <div class="pagination_item_counts flex-l p-l-10 flex-l-m white-text">
         showing
-        <span class="m-l-5 m-r-5 max-w-50">
-          <input type="number" class="grey-text no-border center-align m-b-0" value="10">
+        <span class="m-l-5 m-r-5 max-w-50 white-text">
+          <input type="number" class="white-text no-border center-align m-b-0 " value="10">
         </span>
         of
-        <span class="grey-text m-l-5 m-r-5 ">100</span>
+        <span class=" m-l-5 m-r-5 white-text">100</span>
       </div>
-      <div class="pagination_buttens">
+      <div class="pagination_buttens ">
         <i
-          class="material-icons grey m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill">keyboard_arrow_left</i>
+          class="material-icons m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill grey lighten-2">keyboard_arrow_left</i>
         <i
-          class="material-icons grey m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill">keyboard_arrow_right</i>
+          class="material-icons m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill grey lighten-2">keyboard_arrow_right</i>
       </div>
     </div>
   </section>
 
-  <section id="test_section"></section>
+
 
   <div class="add_user_modal_back dis-none"></div>
   <div class="add_user_modal containerr rounded_top_30 trans-0-5">
@@ -181,7 +193,9 @@
   </div>
 
 
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="assets/js/axios.js"></script>
+  <script defer src="assets/js/alpine.js"></script>
+  <script src="assets/js/alpinejscontroler/usersControlers.js"></script>
   <script src="/assets/materialize/js/materialize.min.js"></script>
   <script src="/assets/js/app.js"></script>
   <script src="/assets/js/user.js"></script>
