@@ -12,9 +12,7 @@
 .users-list-item.active , .users-list-item.active .collapsible-header{
     background-color: gray;
 }
-.containerr{
-    width: 100% !important;
-}
+
 .add_user_modal_back{
     position: fixed;
     width: 100%;
@@ -38,17 +36,15 @@
 }
 .add_user_modal.show{
     bottom: 0;
-    box-shadow: 0 0 10 grey;
+    box-shadow: 0 0 10px grey;
 }
-.coontainer{
-    width: 70% !important;
+
+.user-list-section{
+    height: calc(100vh - 258px);
+    overflow: auto;
 }
-.black1{
-    color: #1c181a !important
-}
-.grey1{
-    color: #afaca2 !important;
-}
-.orang1{
-    color: #ff3d00 !important;
-}
+
+
+
+
+

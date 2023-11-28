@@ -19,7 +19,8 @@
   <nav class=" grey darken-4 z-depth-1">
     <div class="nav-wrapper">
       <a href="#!" class="white-text">user manager</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger white-text"><i class="material-icons white-text">menu</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger white-text"><i
+          class="material-icons white-text">menu</i></a>
       <ul class="hide-on-med-and-down">
         <!-- <li><a class="black-text"></a></li>
             <li><a class="black-text">Components</a></li> -->
@@ -42,11 +43,14 @@
     </li>
     <li><a class="subheader white-text">social</a></li>
     <li>
-      <div class="divider"></div>
+      <div class="divider  grey darken-4"></div>
     </li>
-    <li><a class="white-text" href="https://t.me/saj2004jad_saleh"><i class="material-icons grey-text lighten-2">insert_link</i>telegram</a></li>
-    <li><a class="white-text" href="https://github.com/saj2004jad"><i class="material-icons grey-text lighten-2">insert_link</i>Github</a></li>
-    <li><a class="white-text" href="https://sajjad.saleh2004@gmail.com"><i class="material-icons grey-text lighten-2">insert_link</i>Email</a></li>
+    <li><a class="white-text" href="https://t.me/saj2004jad_saleh"><i
+          class="material-icons grey-text lighten-2">insert_link</i>telegram</a></li>
+    <li><a class="white-text" href="https://github.com/saj2004jad"><i
+          class="material-icons grey-text lighten-2">insert_link</i>Github</a></li>
+    <li><a class="white-text" href="https://sajjad.saleh2004@gmail.com"><i
+          class="material-icons grey-text lighten-2">insert_link</i>Email</a></li>
     <!-- for page -->
     <!-- <li><div class="divider"></div></li>
           <li><a class="subheader">pages</a></li>
@@ -60,8 +64,8 @@
   <!-- add butten________start -->
   <section id="top-action-section" class="row m-b-0 p-t-20 container ">
     <div class="p-t-30 col s12 m6 l6 ">
-      <button id="add_user_button"
-        class="waves-effect waves-light btn   grey lighten-1  w-full rounded_pill p-all-10 flex-c black-text f-bold ">
+      <button id="add_user_button" 
+        class="waves-effect waves-light btn   grey lighten-1  w-full rounded_pill p-all-10 flex-c black-text f-bold " x-on:click="showAddModal=true">
         <i class="material-icons m-r-5 f-bold">add</i>
         add user
       </button>
@@ -75,37 +79,56 @@
           search</label>
       </div>
   </section>
+  <template x-if="isLoading">
+    <div class="center-align ">
+      <div class="preloader-wrapper small active ">
+        <div class="spinner-layer spinner-grey-only ">
+          <div class="circle-clipper left">
+            <div class="circle "></div>
+          </div>
+          <div class="gap-patch ">
+            <div class="circle "></div>
+          </div>
+          <div class="circle-clipper right ">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+
   <section class="user-list-section " x-init="getUsers()">
     <ul class="collapsible popout hide-on-med-and-up ">
       <template x-for="user in users">
-         <li class="users-list-item">
-        <div class="collapsible-header  grey lighten-1 ">
-          <i class="material-icons user-list-arrow-icon trans-0-5 grey-textdarken-4">arrow_drop_down_circle</i>
-         <span x-text="user.name" class="f-bold grey-textdarken-4"></span> 
-        </div>
-        <div class="collapsible-body grey lighten-2">
-          <div class="p-all-5">
-            <span class="f-bold ">Username : </span>
-            <span x-text="user.username"></span>
+        <li class="users-list-item">
+          <div class="collapsible-header  grey lighten-1 ">
+            <i class="material-icons user-list-arrow-icon trans-0-5 grey-textdarken-4">arrow_drop_down_circle</i>
+            <span x-text="user.name" class="f-bold grey-textdarken-4"></span>
           </div>
-          <div class="p-all-5"> 
-            <span class="f-bold">Email : </span>
-            <span  x-text="user.email" ></span>
-           
+          <div class="collapsible-body grey lighten-2">
+            <div class="p-all-5">
+              <span class="f-bold ">Username : </span>
+              <span x-text="user.username"></span>
+            </div>
+            <div class="p-all-5">
+              <span class="f-bold">Email : </span>
+              <span x-text="user.email"></span>
+
+            </div>
+            <div class="p-all-5"> <span class="f-bold">City : </span>
+              <span x-text="user.address.city"> </span>
+
+            </div>
+            <div class="p-all-5 flex-l-m">
+              <span class="f-bold">Action : </span>
+              <i class="material-icons red-text m-l-5 m-r-5">delete_forever</i>
+              <i class="material-icons green-text m-l-5 m-r-5">edit</i>
+            </div>
           </div>
-          <div class="p-all-5"> <span class="f-bold">City : </span>
-            <span  x-text="user.address.city"> </span>
-           
-          </div>
-          <div class="p-all-5 flex-l-m">
-            <span   class="f-bold">Action : </span>
-            <i class="material-icons red-text m-l-5 m-r-5">delete_forever</i>
-            <i class="material-icons green-text m-l-5 m-r-5">edit</i>
-          </div>
-        </div>
-      </li>
-    </template>
-     
+        </li>
+      </template>
+
     </ul>
 
     <div class="hide-on-med-and-down show-on-medium-and-up container">
@@ -143,7 +166,7 @@
       </table>
     </div>
   </section>
-<section >
+  <section>
     <div
       class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 rounded_top_30 grey darken-4">
       <div class="pagination_item_counts flex-l p-l-10 flex-l-m white-text">
@@ -165,8 +188,8 @@
 
 
 
-  <div class="add_user_modal_back dis-none"></div>
-  <div class="add_user_modal containerr rounded_top_30 trans-0-5">
+  <div class="add_user_modal_back" x-bind:class="{'dis-none': !showAddModal}" x-on:click="showAddModal=false" ></div>
+  <div class="add_user_modal container rounded_top_30 trans-0-5 grey darken-3" x-bind:class="{'show': showAddModal}" >
     <div class="row p-t-10 p-b-10 p-r-40 p-l-40 center ">
       <h5 class="center"><i class="material-icons m-r-10 m-l-10 pos-relative top-4">person_add</i>Add User</h5>
 
@@ -175,19 +198,19 @@
       <form>
         <div class="input-field coll s12  ">
           <input type="text" id="name" class="validate">
-          <label for="name">Name:</label>
+          <label for="name" class="white-text ">Name:</label>
 
           <div class="input-field coll s12 ">
             <input type="text" id="username" class="validate ">
-            <label for="username">Username:</label>
+            <label for="username" class="white-text ">Username:</label>
 
             <div class="input-field coll s12 ">
               <input type="text" id="Email" class="validate">
-              <label for="Email">Email:</label>
+              <label for="Email"class="white-text ">Email:</label>
             </div>
 
             <button type="button"
-              class=" waves-effect waves-light btn grey black-text m-b-20 w-full max-w-250 rounded_pill ">Submit</button>
+              class=" waves-effect waves-light btn grey lighten-1 black-text  m-b-20 m-t-150 w-full max-w-250 rounded_pill f-bold ">Submit</button>
       </form>
     </div>
   </div>
