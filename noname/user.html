@@ -64,8 +64,9 @@
   <!-- add butten________start -->
   <section id="top-action-section" class="row m-b-0 p-t-20 container ">
     <div class="p-t-30 col s12 m6 l6 ">
-      <button id="add_user_button" 
-        class="waves-effect waves-light btn   grey lighten-1  w-full rounded_pill p-all-10 flex-c black-text f-bold " x-on:click="showAddModal=true">
+      <button id="add_user_button"
+        class="waves-effect waves-light btn   grey lighten-1  w-full rounded_pill p-all-10 flex-c black-text f-bold "
+        x-on:click="showAddModal=true">
         <i class="material-icons m-r-5 f-bold">add</i>
         add user
       </button>
@@ -73,9 +74,10 @@
     <!-- search________start -->
     <div class="row col s12 m6 l6 m-b-5">
       <div class="input-field col s12">
-        <input id="search" type="text" class="validate white-text">
+        <input id="search" type="text" class="validate white-text" x-on:keyDown="handelSearch($el)">
         <label class="white-text" for="search">
-          <i class="material-icons pos-relative top-7 white-text">search</i>
+          <i class="material-icons pos-relative
+           top-7 white-text">search</i>
           search</label>
       </div>
   </section>
@@ -100,7 +102,7 @@
 
   <section class="user-list-section " x-init="getUsers()">
     <ul class="collapsible popout hide-on-med-and-up ">
-      <template x-for="user in users">
+      <template x-for="user in pageUsers">
         <li class="users-list-item">
           <div class="collapsible-header  grey lighten-1 ">
             <i class="material-icons user-list-arrow-icon trans-0-5 grey-textdarken-4">arrow_drop_down_circle</i>
@@ -146,7 +148,7 @@
 
 
         <tbody class="desktop_table_body">
-          <template x-for="user in users">
+          <template x-for="user in pageUsers">
             <tr>
               <td x-text="user.id"></td>
               <td x-text="user.name"></td>
@@ -167,29 +169,37 @@
     </div>
   </section>
   <section>
-    <div
-      class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 rounded_top_30 grey darken-4">
-      <div class="pagination_item_counts flex-l p-l-10 flex-l-m white-text">
+    <div class="pagination_container container p-l-9 p-r-9 p-t-15 
+      p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 
+      rounded_top_30 grey darken-4">
+      <div class="pagination_item_counts flex-l p-l-10 
+      flex-l-m white-text">
         showing
-        <span class="m-l-5 m-r-5 max-w-50 white-text">
-          <input type="number" class="white-text no-border center-align m-b-0 " value="10">
+        <span class="m-l-5 m-r-5 max-w-50 white-text pos-relative top-3">
+          <input type="number" class="white-text no-border
+           center-align m-b-0 " x-on:change="handelChangeItemsCount($el)" x-bind:value="itemsCount">
         </span>
         of
-        <span class=" m-l-5 m-r-5 white-text">100</span>
+        <span class=" m-l-5 m-r-5 white-text" x-text="users.length"></span>
       </div>
+
+      <strong x-text="currentPage" class="white-text page_number"></strong>
+
+
       <div class="pagination_buttens ">
-        <i
-          class="material-icons m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill grey lighten-2">keyboard_arrow_left</i>
-        <i
-          class="material-icons m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5 waves-effect rounded_pill grey lighten-2">keyboard_arrow_right</i>
+        <i class="material-icons m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5
+           waves-effect rounded_pill grey lighten-2" x-on:click="prevPage()">keyboard_arrow_left</i>
+        <i class="material-icons m-l-5 m-r-5 p-l-5 p-r-5 p-t-5 p-b-5
+           waves-effect rounded_pill grey lighten-2" x-on:click="nextPage()">keyboard_arrow_right</i>
       </div>
     </div>
   </section>
 
 
 
-  <div class="add_user_modal_back" x-bind:class="{'dis-none': !showAddModal}" x-on:click="showAddModal=false" ></div>
-  <div class="add_user_modal container rounded_top_30 trans-0-5 grey darken-3" x-bind:class="{'show': showAddModal}" >
+  <div class="add_user_modal_back" x-show="showAddModal" x-transition.duration.400ms x-on:click="showAddModal=false">
+  </div>
+  <div class="add_user_modal container rounded_top_30 trans-0-5 grey darken-3" x-bind:class="{'show': showAddModal}">
     <div class="row p-t-10 p-b-10 p-r-40 p-l-40 center ">
       <h5 class="center"><i class="material-icons m-r-10 m-l-10 pos-relative top-4">person_add</i>Add User</h5>
 
@@ -206,7 +216,7 @@
 
             <div class="input-field coll s12 ">
               <input type="text" id="Email" class="validate">
-              <label for="Email"class="white-text ">Email:</label>
+              <label for="Email" class="white-text ">Email:</label>
             </div>
 
             <button type="button"
