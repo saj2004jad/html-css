@@ -22,10 +22,6 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger white-text"><i
           class="material-icons white-text">menu</i></a>
       <ul class="hide-on-med-and-down">
-        <!-- <li><a class="black-text"></a></li>
-            <li><a class="black-text">Components</a></li> -->
-        <!-- <li><a class="black-text">Javascript</a></li>
-            <li><a class="black-text">Mobile</a></li> -->
       </ul>
     </div>
   </nav>
@@ -51,17 +47,12 @@
           class="material-icons grey-text lighten-2">insert_link</i>Github</a></li>
     <li><a class="white-text" href="https://sajjad.saleh2004@gmail.com"><i
           class="material-icons grey-text lighten-2">insert_link</i>Email</a></li>
-    <!-- for page -->
-    <!-- <li><div class="divider"></div></li>
-          <li><a class="subheader">pages</a></li>
-          <li><a class="waves-effect" href="">telegram</a></li> -->
-    <!-- for page -->
   </ul>
   <!-- navbar___end_____ -->
 
 
 
-  <!-- add butten________start -->
+  <!-- add button________start -->
   <section id="top-action-section" class="row m-b-0 p-t-20 container ">
     <div class="p-t-30 col s12 m6 l6 ">
       <button id="add_user_button"
@@ -71,10 +62,11 @@
         add user
       </button>
     </div>
+    <!-- add button________ end -->
     <!-- search________start -->
     <div class="row col s12 m6 l6 m-b-5">
-      <div class="input-field col s12">
-        <input id="search" type="text" class="validate white-text" x-on:keyDown="handelSearch($el)">
+      <div class="input-field col s12" x-init="$watch('searchChar',(value)=>handelSearch(value))">
+        <input id="search" type="text" class="validate white-text" x-model="searchChar">
         <label class="white-text" for="search">
           <i class="material-icons pos-relative
            top-7 white-text">search</i>
@@ -98,8 +90,10 @@
       </div>
     </div>
   </template>
+  <!-- search ___end -->
 
 
+  <!-- list for mobile _____ start  -->
   <section class="user-list-section " x-init="getUsers()">
     <ul class="collapsible popout hide-on-med-and-up ">
       <template x-for="user in pageUsers">
@@ -119,12 +113,12 @@
 
             </div>
             <div class="p-all-5"> <span class="f-bold">City : </span>
-              <span x-text="user.address.city"> </span>
+              <span x-text="(user.address?.city || '')"> </span>
 
             </div>
             <div class="p-all-5 flex-l-m">
               <span class="f-bold">Action : </span>
-              <i class="material-icons red-text m-l-5 m-r-5">delete_forever</i>
+              <i class="material-icons red-text m-l-5 m-r-5" x-on:click="handleDeleteUser(user.name)">delete_forever</i>
               <i class="material-icons green-text m-l-5 m-r-5">edit</i>
             </div>
           </div>
@@ -132,7 +126,8 @@
       </template>
 
     </ul>
-
+    <!-- list for mobile _____ end  -->
+    <!-- table for win ____ start -->
     <div class="hide-on-med-and-down show-on-medium-and-up container">
       <table class="centered striped  grey lighten-1">
         <thead>
@@ -145,8 +140,6 @@
             <th>Action</th>
           </tr>
         </thead>
-
-
         <tbody class="desktop_table_body">
           <template x-for="user in pageUsers">
             <tr>
@@ -154,20 +147,20 @@
               <td x-text="user.name"></td>
               <td x-text="user.username"></td>
               <td x-text="user.email"></td>
-              <td x-text="user.address.city"></td>
+              <td x-text="(user.address?.city || '')"></td>
               <td>
                 <i class="material-icons green-text m-l-5 m-r-5 hov-pointer">edit</i>
-                <i class="material-icons red-text m-l-5 m-r-5 hov-pointer">delete_forever</i>
+                <i class="material-icons red-text m-l-5 m-r-5 " x-on:click="handleDeleteUser(user.name)">delete_forever</i>
               </td>
             </tr>
           </template>
-
-
-
         </tbody>
       </table>
     </div>
   </section>
+  <!-- table for win ____ end -->
+
+  <!-- page down navbar _____ start -->
   <section>
     <div class="pagination_container container p-l-9 p-r-9 p-t-15 
       p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-2 
@@ -194,9 +187,9 @@
       </div>
     </div>
   </section>
+  <!-- page down navbar _____ end -->
 
-
-
+  <!-- list add user____ start -->
   <div class="add_user_modal_back" x-show="showAddModal" x-transition.duration.400ms x-on:click="showAddModal=false">
   </div>
   <div class="add_user_modal container rounded_top_30 trans-0-5 grey darken-3" x-bind:class="{'show': showAddModal}">
@@ -207,24 +200,28 @@
 
       <form>
         <div class="input-field coll s12  ">
-          <input type="text" id="name" class="validate">
+          <input type="text" id="name" class="validate" x-model="newUserInfo.name">
           <label for="name" class="white-text ">Name:</label>
 
           <div class="input-field coll s12 ">
-            <input type="text" id="username" class="validate ">
+            <input type="text" id="username" class="validate " x-model="newUserInfo.username">
             <label for="username" class="white-text ">Username:</label>
 
             <div class="input-field coll s12 ">
-              <input type="text" id="Email" class="validate">
+              <input type="text" id="Email" class="validate" x-model="newUserInfo.email">
               <label for="Email" class="white-text ">Email:</label>
             </div>
 
-            <button type="button"
-              class=" waves-effect waves-light btn grey lighten-1 black-text  m-b-20 m-t-150 w-full max-w-250 rounded_pill f-bold ">Submit</button>
+            <button type="button" class=" waves-effect waves-light btn grey lighten-1
+               black-text  m-b-20 m-t-150 w-full max-w-250 rounded_pill
+                f-bold " x-on:click="handleSubmitAddUserForm()"
+                x-bind:class="{'pulse':isLoading}"
+                x-bind:disabled='isLoading'
+                >Submit</button>
       </form>
     </div>
   </div>
-
+  <!-- list add user____ end -->
 
   <script defer src="assets/js/axios.js"></script>
   <script defer src="assets/js/alpine.js"></script>

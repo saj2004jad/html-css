@@ -8,6 +8,12 @@ document.addEventListener('alpine:init', () => {
         pageCount: 1,
         itemsCount: 4,
         currentPage: 1,
+        searchChar: "",
+        newUserInfo: {
+            name: "",
+            username: "",
+            email: "",
+        },
         getUsers() {
             this.isLoading = true
 
@@ -53,15 +59,50 @@ document.addEventListener('alpine:init', () => {
 
 
         },
-        handelSearch(e) {
-            setTimeout(() => {
-                this.users = this.mainUsers.filter(user => (user.name.includes
-                    (e.value) || user.username.includes(e.value) ||
-                    user.email.includes(e.value)))
-                this.currentPage = 1
-                this.pageination()
-            }, 100)
+        handelSearch(value) {
+
+            this.users = this.mainUsers.filter(user => (user.name.includes
+                (value) || user.username.includes(value) ||
+                user.email.includes(value)))
+            this.currentPage = 1
+            this.pageination()
+
+        },
+
+        handleSubmitAddUserForm() {
+            this.isLoading = true
+            axios.post(
+                'https://jsonplaceholder.typicode.com/users', this.newUserInfo
+            ).then((res) => {
+                if (res.status === 201) {
+                    this.mainUsers.push(res.data)
+                    this.showAddModal = false
+                    this.handleResetForm()
+                    this.pageination()
+                    M.toast({ html: 'User created successfully...', classes: 'rounded green' })
+                }
+
+            })
+                .finally(() => {
+                    this.isLoading = false
+                })
+        },
+        handleResetForm() {
+            this.newUserInfo = {
+                name: "",
+                username: "",
+                email: "",
+            }
+        },
+        handleDeleteUser(username) {
+            var toastHTML = 
+            '<span>Are you sure Delete '+ username +'?</span><button class="btn-flat toast-action" >yes</button>';
+            M.toast({ html: toastHTML });
+        },
+        handleConfirmDeleteUser(username) {
+
         }
+
 
 
 
