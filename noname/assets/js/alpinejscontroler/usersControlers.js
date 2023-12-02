@@ -14,6 +14,7 @@ document.addEventListener('alpine:init', () => {
             username: "",
             email: "",
         },
+        userIdToEdit: null,
         getUsers() {
             this.isLoading = true
 
@@ -94,17 +95,47 @@ document.addEventListener('alpine:init', () => {
                 email: "",
             }
         },
-        handleDeleteUser(username) {
-            var toastHTML = 
-            '<span>Are you sure Delete '+ username +'?</span><button class="btn-flat toast-action" >yes</button>';
-            M.toast({ html: toastHTML });
+        handleDeleteUser(userId) {
+            
+            
+            var toastHTML = '<span>Are you sure? ('+userId+')</span><button class="btn-flat toast-action" x-on:click="handleConfirmDeleteUser('+userId+')">Delete</button>';
+            M.toast({html: toastHTML});
+          
         },
-        handleConfirmDeleteUser(username) {
+        
+           
+        
+        handleConfirmDeleteUser(userId){
+            this.isLoading = true
+            axios.delete("https://jsonplaceholder.typicode.com/users/"+userId).then((res)=>{
+                if (res.status === 200) {
+                    this.mainUsers = this.mainUsers.filter(user=>user.id != userId)
+                    this.users = this.users.filter(user=>user.id != userId)
+                    this.pagination()
+                    M.toast({html: 'User deleted successfully...', classes: 'rounded green'})
+                }
+            }).finally(()=>{
+                this.isLoading = false
+            })
+        },
+      handleEditUser(user) {
+        axios.get("https://jsonplaceholder.typicode.com/users/"+user.id).then(res=> {
+if (res.status=== 200) {
+    this.newUserInfo= {
+        name:res.data.name,
+        username: res.data.username,
+        email: res.data.email,
+    }
+    this.userIdToEdit = res.data.id
+}
+      
+    
+})
+        this.showAddModal=true
+      },
 
-        }
-
-
-
+      
 
     }))
 })
+handleEditUser
